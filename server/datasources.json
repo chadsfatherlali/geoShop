@@ -1,6 +1,26 @@
 {
   "db": {
+  	"url": "mongodb://heroku_mkctgnlx:bt4npuk1bt6en70cdqria4tng1@ds121212.mlab.com:21212/heroku_mkctgnlx",	
     "name": "db",
-    "connector": "memory"
+    "connector": "mongodb"
+  },
+  "emailDs": {
+    "name": "emailDs",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp.gmail.com",
+        "secure": true,
+        "port": 465,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+          "user": "chadsfather@gmail.com",
+          "pass": "lalita1412"
+        }
+      }
+    ]
   }
 }

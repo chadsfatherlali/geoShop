@@ -6,9 +6,16 @@
       "./node_modules/loopback-component-passport/lib/models"
     ]
   },
+  "User": {
+    "dataSource": "db",
+    "public": false
+  },
   "user": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "emailVerificationRequired": true
+    }
   },
   "accessToken": {
     "dataSource": "db",
@@ -33,5 +40,8 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Email": {
+    "dataSource": "emailDs"
   }
 }

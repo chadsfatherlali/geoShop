@@ -127,7 +127,9 @@ app.post('/signup', function(req, res, next) {
     if (err) {
       req.flash('error', err.message);
       return res.redirect('back');
-    } else {
+    } 
+
+    else {
       // Passport exposes a login() function on req (also aliased as logIn())
       // that can be used to establish a login session. This function is
       // primarily used when users sign up, during which req.login() can

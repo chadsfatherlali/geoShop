@@ -27,7 +27,9 @@
     "passport-twitter": "^1.0.2",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^1.1.0",
-    "loopback-component-explorer": "^2.1.0"
+    "loopback-component-explorer": "^2.1.0",
+    "loopback-connector-mongodb": "^3.1.0",
+    "ejs": "latest"
   },
   "devDependencies": {
     "eslint": "^2.5.3",
