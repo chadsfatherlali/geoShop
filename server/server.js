@@ -47,7 +47,7 @@ try {
 // Setup the view engine (jade)
 var path = require('path');
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 // boot scripts mount components like REST API
 boot(app, __dirname);
@@ -101,8 +101,26 @@ app.get('/auth/account', ensureLoggedIn('/login'), function(req, res, next) {
   });
 });
 
+
+app.get('/myproducts', ensureLoggedIn('/login'), function(req, res, next) {
+  var Product = app.models.product;
+
+
+  res.render('pages/product', {
+     
+  });
+});
+
+
+app.get('/addproduct', ensureLoggedIn('/login'), function(req, res, next) {
+  res.render('pages/addproduct', {
+    user: req.user,
+    url: req.url,
+  });
+});
+
 app.get('/local', function(req, res, next) {
-  res.render('pages/local', {
+  res.render('pages/loginProfiles', {
     user: req.user,
     url: req.url,
   });
@@ -129,7 +147,7 @@ app.post('/signup', function(req, res, next) {
       return res.redirect('back');
     } 
 
-    else {
+    /*else {
       // Passport exposes a login() function on req (also aliased as logIn())
       // that can be used to establish a login session. This function is
       // primarily used when users sign up, during which req.login() can
@@ -141,7 +159,7 @@ app.post('/signup', function(req, res, next) {
         }
         return res.redirect('/auth/account');
       });
-    }
+    }*/
   });
 });
 

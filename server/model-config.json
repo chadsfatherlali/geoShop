@@ -43,5 +43,9 @@
   },
   "Email": {
     "dataSource": "emailDs"
+  },
+  "product": {
+    "dataSource": "db",
+    "public": true
   }
 }

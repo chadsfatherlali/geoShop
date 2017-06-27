@@ -17,7 +17,7 @@ module.exports = function(User) {
       to: user.email,
       from: 'noreply@loopback.com',
       subject: 'Thanks for registering.',
-      template: path.resolve(__dirname, '../../server/views/verify.jade'),
+      template: path.resolve(__dirname, '../../server/views/email/verify.ejs'),
       //redirect: '/verified',
       redirect: '/', 
       user: user
@@ -31,12 +31,13 @@ module.exports = function(User) {
 
       console.log('> verification email sent:', response);
 
-      context.res.render('pages/index', {
+      context.res.render('pages/verification', {
         title: 'Signed up successfully',
         content: 'Please check your email and click on the verification link ' +
             'before logging in.',
         redirectTo: '/',
-        redirectToLinkText: 'Log in'
+        redirectToLinkText: 'Log in',
+        user: null
       });
     });
   });

@@ -17,6 +17,11 @@
       "type": "hasMany",
       "model": "userCredential",
       "foreignKey": "userId"
+    },
+    "products": {
+      "type": "hasMany",
+      "model": "product",
+      "foreignKey": "userId"
     }
   },
   "validations": [],

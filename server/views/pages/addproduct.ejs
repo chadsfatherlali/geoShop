@@ -1,0 +1,13 @@
+<%- include('../partials/header'); %>
+
+    <form class="form-signin" action='/api/products', method='post'>
+        <h2 class="form-signin-heading">Add product</h2>
+
+        <input name='userId' type="text" id="UserId" class="form-control" value="<%= user.id %>">
+
+         <label for="name" class="sr-only">Product name</label>
+        <input name='name' type="text" id="Product" class="form-control" placeholder="name" required="" autofocus="">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
+      </form>
+
+<%- include('../partials/footer'); %>
