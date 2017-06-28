@@ -133,6 +133,12 @@ app.get('/signup', function(req, res, next) {
   });
 });
 
+app.get('/verified', function(req, res, next) {
+  res.render('pages/verification', {
+    user: null
+    });
+});
+
 app.post('/signup', function(req, res, next) {
   var User = app.models.user;
 
@@ -146,20 +152,9 @@ app.post('/signup', function(req, res, next) {
       req.flash('error', err.message);
       return res.redirect('back');
     } 
-
-    /*else {
-      // Passport exposes a login() function on req (also aliased as logIn())
-      // that can be used to establish a login session. This function is
-      // primarily used when users sign up, during which req.login() can
-      // be invoked to log in the newly registered user.
-      req.login(user, function(err) {
-        if (err) {
-          req.flash('error', err.message);
-          return res.redirect('back');
-        }
-        return res.redirect('/auth/account');
-      });
-    }*/
+    else {
+        return res.redirect('/');
+    }
   });
 });
 
@@ -188,7 +183,29 @@ app.start = function() {
   });
 };
 
+
 // start the server if `$ node server.js`
-if (require.main === module) {
+/*if (require.main === module) {
   app.start();
-}
+}*/
+
+
+boot(app, __dirname, function(err) {
+  if (err) throw err;
+  // start the server if `$ node server.js`
+  if (require.main === module) {
+    app.start();
+  }
+
+  passportConfigurator.setupModels({
+    userModel: app.models.user,
+    userIdentityModel: app.models.userIdentity,
+    userCredentialModel: app.models.userCredential,
+  });
+
+  for (var key in config) {
+    var provider = config[key];
+    provider.session = provider.session !== false;
+    passportConfigurator.configureProvider(key, provider);
+  }
+});
