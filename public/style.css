@@ -1,0 +1,25 @@
+.vertical-align-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+
+.vertical-align-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; }
+
+.vertical-align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.fixed-header {
+  background-color: #8d6eb1; }
+
+.main-header__logoBox a {
+  color: #fff; }
+
+nav.hori-align-end li a {
+  color: #fff; }
+
+/*# sourceMappingURL=style.css.map */

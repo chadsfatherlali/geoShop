@@ -101,7 +101,6 @@ app.get('/auth/account', ensureLoggedIn('/login'), function(req, res, next) {
   });
 });
 
-
 app.get('/myproduct', ensureLoggedIn('/login'), function(req, res, next) {
   var Product = app.models.product;
   res.render('pages/product', {
