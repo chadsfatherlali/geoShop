@@ -126,6 +126,7 @@ app.get('/local', function(req, res, next) {
   });
 });
 
+
 app.get('/signup', function(req, res, next) {
   res.render('pages/signup', {
     user: req.user,
@@ -160,8 +161,8 @@ app.post('/signup', function(req, res, next) {
 
 app.get('/login', function(req, res, next) {
   res.render('pages/login', {
-    user: req.user,
-    url: req.url,
+     user: req.user,
+     error: req.flash('error')
   });
 });
 
