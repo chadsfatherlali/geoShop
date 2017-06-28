@@ -9,11 +9,6 @@ var path = require('path');
 module.exports = function(Product) {
   
   Product.afterRemote('create', function(context, product, next) {
-
-      context.res.render('pages/product', {
-        title: 'added successfully',
-        content: '',
-        user: null
-      });
+      context.res.redirect('/myproduct');
     });
 };
