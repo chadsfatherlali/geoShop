@@ -7,6 +7,8 @@
     "authPath": "/auth/local",
     "successRedirect": "/auth/account",
     "failureRedirect": "/local",
-    "failureFlash": true
+    "failureFlash": true,
+    "forceDefaultCallback": true,
+    "setAccessToken" : true
   }
 }

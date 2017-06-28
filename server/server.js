@@ -62,6 +62,7 @@ app.middleware('parse', bodyParser.urlencoded({
 // The access token is only available after boot
 app.middleware('auth', loopback.token({
   model: app.models.accessToken,
+  currentUserLiteral: 'me'
 }));
 
 app.middleware('session:before', cookieParser(app.get('cookieSecret')));
@@ -88,13 +89,23 @@ for (var s in config) {
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 app.get('/', function(req, res, next) {
-  res.render('pages/index', {user:
-    req.user,
+  res.render('pages/index', {
+    user: req.user,
     url: req.url,
   });
 });
 
 app.get('/auth/account', ensureLoggedIn('/login'), function(req, res, next) {
+  var User = app.models.user;
+
+  User.findOne({
+    where: {
+      id: req.user.id
+    }
+  }, function (err, result) {
+    console.log(result);
+  });
+
   res.render('pages/loginProfiles', {
     user: req.user,
     url: req.url,
@@ -171,6 +182,27 @@ app.start = function() {
 };
 
 // start the server if `$ node server.js`
-if (require.main === module) {
+/*if (require.main === module) {
   app.start();
-}
+}*/
+
+
+boot(app, __dirname, function(err) {
+  if (err) throw err;
+  // start the server if `$ node server.js`
+  if (require.main === module) {
+    app.start();
+  }
+
+  passportConfigurator.setupModels({
+    userModel: app.models.user,
+    userIdentityModel: app.models.userIdentity,
+    userCredentialModel: app.models.userCredential,
+  });
+
+  for (var key in config) {
+    var provider = config[key];
+    provider.session = provider.session !== false;
+    passportConfigurator.configureProvider(key, provider);
+  }
+});
